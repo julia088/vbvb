@@ -1,0 +1,145 @@
+package diagramas;
+
+import java.util.Scanner;
+
+public class Medico {
+	protected String CRM;
+	protected String nome;
+	protected int idade;
+	protected double salario;
+	
+	public String getCRM(){
+		return CRM;
+	}
+	
+	public void setCRM(String CRM){
+		this.CRM = CRM;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
+	public int getIdade(){
+		return idade;
+	}
+	
+	public void setIdade(int idade) {
+		this.idade = idade;
+	}
+	
+	public double getSalario() {
+		return salario;
+	}
+	
+	public void setSalario(double salario) {
+		this.salario = salario;
+	}
+	
+	public void medico_Aposentado(int idade){
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Digite a idade do médico: \n");
+		idade = scan.nextInt();
+		
+		if(idade>55){
+			System.out.println("O médico está aposentado!");
+		}else {
+			System.out.println("Médico não aposentado!");
+		}
+	}
+	
+	public void valor_Aposentadoria(double salario){
+		Scanner scan = new Scanner(System.in);
+		double porcentagem = 80;
+		
+		System.out.println("Digite o valor do salário: \n");
+		salario = scan.nextInt();
+		
+		double aposentadoria = (porcentagem/100) * salario;
+		
+		System.out.println("O valor da aposentadoria é de R$" + aposentadoria + " reais");
+	}
+   
+    public static void main(String[] args) {
+    	Medico med = new Medico();
+    	med.setNome("Júlia");
+    	med.setCRM("15161");
+    	med.setIdade(51);
+    	med.setSalario(3500);
+    	
+    	System.out.println("Nome: " + med.getNome() + "\nIdade: " + med.getIdade() + "\nCRM: " + med.getCRM() + "\nSalário: "+ med.getSalario());
+        med.medico_Aposentado(med.getIdade());
+        med.valor_Aposentadoria(med.getSalario());
+    }
+}
+
+public class MedicoAuxiliar extends Medico{
+	
+	public MedicoAuxiliar(String CRM, String nome, int idade, double salario) {
+		super();
+		
+		}
+	
+	@Override
+	public void medico_Aposentado(int idade){
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Digite a idade do médico: \n");
+		idade = scan.nextInt();
+		
+		if(idade>60){
+			System.out.println("O médico está aposentado!");
+		}else {
+			System.out.println("Médico não aposentado!");
+		}
+	}
+	
+	public static void main(String[] args) {
+        MedicoAuxiliar medAux = new MedicoAuxiliar("CRM12345", "Francisca", 51, 6000);
+    	
+    	medAux.medico_Aposentado(medAux.getIdade());
+    	medAux.setSalario(medAux.getSalario());
+	}
+}
+
+class MedicoCirurgiao extends Medico{
+	public MedicoCirurgiao(String CRM, String nome, int idade, double salario) {
+		super();
+		}
+	
+	@Override
+	public void medico_Aposentado(int idade){
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Digite a idade do médico: \n");
+		idade = scan.nextInt();
+		
+		if(idade>50){
+			System.out.println("O médico está aposentado!");
+		}else {
+			System.out.println("Médico não aposentado!");
+		}
+	}
+	
+	@Override
+	public void valor_Aposentadoria(double salario){
+		Scanner scan = new Scanner(System.in);
+		double porcentagem = 80;
+		
+		System.out.println("Digite o valor do salário: \n");
+		salario = scan.nextInt();
+		
+		double aposentadoria = ((porcentagem/100) * salario) + 800;
+		
+		System.out.println("O valor da aposentadoria é de R$" + aposentadoria + " reais");
+	}
+
+    public static void main(String[] args) {
+    	MedicoCirurgiao medCir = new MedicoCirurgiao("CRM12345", "Francisca", 51, 6000);
+    	
+    	medCir.medico_Aposentado(medCir.getIdade());
+    	medCir.setSalario(medCir.getSalario());
+    }
+}
